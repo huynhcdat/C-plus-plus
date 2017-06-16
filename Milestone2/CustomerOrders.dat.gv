@@ -1,0 +1,33 @@
+digraph task {
+node[style="filled", fillcolor="grey"]
+			"CPU" [fillcolor=yellow, shape=box];
+"CPU"->"Fardad Soleimanloo\n" [color=green];
+"Memory" [fillcolor=yellow, shape=box];
+"Memory"->"Fardad Soleimanloo\n" [color=green];
+"Memory" [fillcolor=yellow, shape=box];
+"Memory"->"Fardad Soleimanloo\n" [color=green];
+
+"CPU" [fillcolor=yellow, shape=box];
+"CPU"->"Joseph Hughes\n" [color=green];
+"Memory" [fillcolor=yellow, shape=box];
+"Memory"->"Joseph Hughes\n" [color=green];
+
+"CPU" [fillcolor=yellow, shape=box];
+"CPU"->"Chris Szalwinski\n" [color=green];
+"Memory" [fillcolor=yellow, shape=box];
+"Memory"->"Chris Szalwinski\n" [color=green];
+"SSD" [fillcolor=yellow, shape=box];
+"SSD"->"Chris Szalwinski\n" [color=green];
+"GPU" [fillcolor=yellow, shape=box];
+"GPU"->"Chris Szalwinski\n" [color=green];
+
+"CPU" [fillcolor=yellow, shape=box];
+"CPU"->"Elliott Coleshill\n" [color=green];
+"MEMORY" [fillcolor=yellow, shape=box];
+"MEMORY"->"Elliott Coleshill\n" [color=green];
+"Power Supply" [fillcolor=yellow, shape=box];
+"Power Supply"->"Elliott Coleshill\n" [color=green];
+"GPU" [fillcolor=yellow, shape=box];
+"GPU"->"Elliott Coleshill\n" [color=green];
+
+}

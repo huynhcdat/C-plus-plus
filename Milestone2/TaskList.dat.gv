@@ -1,0 +1,23 @@
+digraph task {
+node[style="filled", fillcolor="grey"]  "TASK\nPower Supply" [fillcolor=green, style="rounded,filled", shape=rectangle];
+  "TASK\nPower Supply"->"TASK\nMotherboard" [color=green];
+  "TASK\nMotherboard"->"TASK\nCPU" [color=green];
+  "TASK\nMotherboard"->"TASK\nRemove CPU" [color=red];
+  "TASK\nRemove CPU"->"TASK\nCPU" [color=green];
+  "TASK\nCPU"->"TASK\nMemory" [color=green];
+  "TASK\nCPU"->"TASK\nRemove CPU" [color=red];
+  "TASK\nRemove CPU" [fillcolor=green, style="rounded,filled", shape=rectangle];
+  "TASK\nRemove CPU"->"TASK\nCPU" [color=green];
+  "TASK\nMemory"->"TASK\nSSD" [color=green];
+  "TASK\nMemory"->"TASK\nRemove Memory" [color=red];
+  "TASK\nRemove Memory"->"TASK\nMemory" [color=green];
+  "TASK\nSSD"->"TASK\nGPU" [color=green];
+  "TASK\nSSD"->"TASK\nRemove SSD" [color=red];
+  "TASK\nRemove SSD"->"TASK\nSSD" [color=green];
+  "TASK\nGPU"->"TASK\nTest" [color=green];
+  "TASK\nTest"->"TASK\nApprove" [color=green];
+  "TASK\nTest"->"TASK\nRepair" [color=red];
+  "TASK\nRepair" [fillcolor=green, style="rounded,filled", shape=rectangle];
+  "TASK\nApprove" [fillcolor=green, style="rounded,filled", shape=rectangle];
+
+			label = "TaskList.dat.gv Task Relation Diagram drawn by Graphviz"; fontsize=30;}

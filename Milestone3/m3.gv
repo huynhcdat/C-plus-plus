@@ -1,0 +1,80 @@
+
+digraph m3 {
+  
+   bgcolor=thistle2;
+   edge[color=blue];
+
+   subgraph timeLoop
+   {
+      node [style=filled,color=gray];
+      label="Time Loop";
+      tl_createFactory[shape=box,     label="Create Factory"];
+      tl_createFactory->tl_findSource
+      tl_findSource[shape=box,     label="Find Source"];
+      tl_findSource->tl_loadJobs
+      tl_loadJobs[shape=box,     label="Load jobs into source node input Q"];
+      tl_loadJobs->tl_timeLoop
+      tl_timeLoop[shape=box,     label="Time Loop"];
+      tl_timeLoop:e->tl_incompleteJobs:n
+      tl_incompleteJobs[shape=diamond, label="Incomplete Jobs?"];
+      tl_endTimeLoop[shape=box,     label="End Time Loop"];
+      tl_endTimeLoop->tl_timeLoop[label="Next time step"];
+
+   }
+
+   subgraph machineLoop
+   {
+      node[style=filled,color=green];
+      label="Machine Loop"
+      ml_machineLoop[shape=box,     label="Machine Loop"];
+      ml_machineLoop->ml_qEmpty:n[label="For this machine"];
+      ml_qEmpty[shape=diamond, label="Input Q empty?"];
+      ml_qEmpty->ml_removeJob[label="NO Q not empty"];
+      ml_qEmpty:e->ml_endMachineLoop:n[label="YES Q empty"];
+      ml_removeJob[shape=box,     label="Remove job from input Q"];
+      ml_removeJob->ml_sink
+      ml_sink[shape=diamond, label="Sink?"];
+      ml_sink:w->ml_jobComplete[label="YES"];
+      ml_sink:e->ml_installItem[label="NO"];
+      ml_jobComplete[shape=box,     label="Mark job complete\nReady to ship"];
+      ml_jobComplete->ml_endMachineLoop:n
+      ml_installItem[shape=diamond, label="Install item?"];
+      ml_installItem:w->ml_install[label="YES"];
+      ml_installItem:e->ml_removeItem[label="NO"];
+      ml_install[shape=box,     label="Install item"];
+      ml_install->ml_inspector
+      ml_removeItem[shape=diamond, label="Remove item?"];
+      ml_removeItem:w->ml_remove[label="YES"];
+      ml_removeItem:e->ml_movePassed:n[label="NO, nothing to do"];
+      ml_remove[shape=box,     label="Remove item"];
+      ml_remove->ml_inspector
+      ml_inspector[shape=box,     label="Inspector"];
+      ml_inspector->ml_passed
+      ml_passed[shape=diamond, label="Only Passed?"];
+      ml_passed:e->ml_movePassed:n[label="YES"];
+      ml_passed:w->ml_coinFlip[label="NO"];
+      ml_movePassed[shape=box,     label="Move job to passed machine input Q"];
+      ml_movePassed->ml_endMachineLoop:n
+      ml_coinFlip[shape=diamond, label="Flip a coin"];
+      ml_coinFlip:e->ml_movePassed:n[label="Passed"];
+      ml_coinFlip:w->ml_moveFailed[label="Failed"];
+      ml_moveFailed[shape=box,     label="Move job to failed machine input Q"];
+      ml_moveFailed->ml_endMachineLoop:n
+      ml_endMachineLoop[shape=diamond, label="End Machine Loop"];
+      ml_endMachineLoop:w->ml_machineLoop[label="Next machine"];
+
+  } 
+
+  node[style=filled,color=yellow];
+
+  start[shape=hexagon,label="START"];
+  start->tl_createFactory
+  end[shape=hexagon,label="ALL DONE\nSimulation Over"];
+  tl_incompleteJobs:e->end:w[label="No"];
+  tl_incompleteJobs:s->ml_machineLoop:n[label="Yes"];
+  ml_endMachineLoop:s->tl_endTimeLoop[label="Time Step Complete"];
+
+  graph[fontsize=20];
+	label="MILESTONE 3 MINIMAL VIABLE SKELETON FACTORY FILE m3.gv.dot.png" 
+
+}

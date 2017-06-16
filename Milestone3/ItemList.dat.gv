@@ -1,0 +1,23 @@
+digraph task {
+node[style="filled", fillcolor="grey"]  "ITEM\nCPU" [shape=box][color=blue]
+  "INSTALLER\nCPU" [color=green]
+  "REMOVER\nRemove CPU" [color=red]
+  "ITEM\nCPU"->"INSTALLER\nCPU" [color=green]
+  "ITEM\nCPU"->"REMOVER\nRemove CPU" [color=red]
+  "ITEM\nMemory" [shape=box][color=blue]
+  "INSTALLER\nMemory" [color=green]
+  "REMOVER\nRemove Memory" [color=red]
+  "ITEM\nMemory"->"INSTALLER\nMemory" [color=green]
+  "ITEM\nMemory"->"REMOVER\nRemove Memory" [color=red]
+  "ITEM\nGPU" [shape=box][color=blue]
+  "INSTALLER\nGPU" [color=green]
+  "REMOVER\nRemove GPU" [color=red]
+  "ITEM\nGPU"->"INSTALLER\nGPU" [color=green]
+  "ITEM\nGPU"->"REMOVER\nRemove GPU" [color=red]
+  "ITEM\nPower Supply" [shape=box][color=blue]
+  "INSTALLER\nPower Supply" [color=green]
+  "REMOVER\nRemove Power Supply" [color=red]
+  "ITEM\nPower Supply"->"INSTALLER\nPower Supply" [color=green]
+  "ITEM\nPower Supply"->"REMOVER\nRemove Power Supply" [color=red]
+
+	label = "ItemList.dat.gv Task Relation Diagram drawn by Graphviz"; fontsize=30;}
